@@ -2,8 +2,8 @@
 //Syntax for importing ES Modules - https://www.geeksforgeeks.org/how-to-use-an-es6-import-in-node-js/
 import { Sequelize, Model, DataTypes } from '@sequelize/core';
 
-  //imports dontenv module and allows us to access stored environment variables stored in .env file
-  import 'dotenv/config';
+//imports dontenv module and allows us to access stored environment variables stored in .env file
+import 'dotenv/config';
 
 /* Connect to your database 
   See: Sequalize Getting Started - Connecting to a database by passing a URI - Read: https://sequelize.org/docs/v6/getting-started/#connecting-to-a-database
@@ -14,6 +14,7 @@ import { Sequelize, Model, DataTypes } from '@sequelize/core';
   Read - artilce to learn more about environment variables - https://medium.com/the-node-js-collection/making-your-node-js-work-everywhere-with-environment-variables-2da8cdf6e786
 */
 //ADD CODE HERE to connect to you database
+const sequelize = new Sequelize(process.env.API_URL);
 
 /* Create your Sequalize Model for Listing */
 /*Hint: Take a look at listings.json to figure out the model attributes we need to define.
@@ -22,11 +23,30 @@ import { Sequelize, Model, DataTypes } from '@sequelize/core';
   Also Check out - //Data Types - https://sequelize.org/docs/v6/core-concepts/model-basics/#data-types
 */
 const Listing = sequelize.define('Listing', {
-  // Model attributes are defined here
-  //ADD CODE HERE
+    // Model attributes are defined here
+    //ADD CODE HERE
+    code: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    name: {
+        type: DataTypes.STRING,
+        allowNull: false
+    },
+    // decided to just use latitude and longitude due to the struggle of trying to make JSON work
+    latitude: {
+        type: DataTypes.DOUBLE,
+    },
+    longitude: {
+        type: DataTypes.DOUBLE,
+    },
+    address: {
+        type: DataTypes.STRING,
+        allowNull: true
+    }
 }, {
-  // Other model options go here
-  tableName: 'Listings'
+    // Other model options go here
+    tableName: 'Listings'
 });
 
 // `sequelize.define` also returns the model

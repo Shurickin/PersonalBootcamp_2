@@ -5,11 +5,12 @@
 !.yarn/sdks
 !.yarn/versions
 !config.js
-!.env
+.env
 !package.json
 !package-lock.json
 !.pnp.cjs
 !.pnp.loader.mjs
+!.node_modules
 
 # Swap the comments on the following lines if you don't wish to use zero-installs
 # Documentation here: https://yarnpkg.com/features/zero-installs
